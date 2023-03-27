@@ -5,5 +5,7 @@ export const ROUTE_PATH = {
 };
 
 export const MODAL_ROUTE_PATH = {
-  modal_add: "/modal",
+  create_user: "/create/user",
+  edit_user: "/edit/user/:id",
+  delete_user: "/delete/user/:id",
 };

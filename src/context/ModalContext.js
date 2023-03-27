@@ -5,8 +5,13 @@ export const ModalContextProvider = createContext();
 export const FuncModal = ({ children }) => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
 
   return (
     <ModalContextProvider.Provider value={{ handleShow, handleClose, show }}>

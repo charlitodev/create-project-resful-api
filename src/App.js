@@ -1,7 +1,8 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import AppProviders from "./AppProviders";
-import renderRoutes from "./utils/renderRoutes";
-import ROUTE_INDEX_COMPONENT from "./routes/index";
+import { ROUTE_INDEX_COMPONENT } from "./routes/index";
+import RenderRoutes from "./utils/RenderRoutes";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/style.css";
 
@@ -9,7 +10,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <AppProviders>{renderRoutes(ROUTE_INDEX_COMPONENT)}</AppProviders>
+        <AppProviders>
+          <RenderRoutes route={ROUTE_INDEX_COMPONENT} />
+        </AppProviders>
       </Router>
     </div>
   );

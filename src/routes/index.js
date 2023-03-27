@@ -1,5 +1,11 @@
 import { Profile, LoginForm } from "../views";
-import { Page, NavbarComponent, AddModal } from "../components";
+import {
+  Page,
+  NavbarComponent,
+  AddModal,
+  EditModal,
+  DeleteModal,
+} from "../components";
 import { ROUTE_PATH, MODAL_ROUTE_PATH } from "../constants/routes";
 import { ProtectedAuthUser } from "../components";
 
@@ -25,15 +31,21 @@ const ROUTE_INDEX_COMPONENT = [
     path: ROUTE_PATH.login_form,
     component: <LoginForm />,
   },
+];
+
+const ROUTE_MODAL_COMPONENT = [
   {
-    isModal: true,
-    path: MODAL_ROUTE_PATH.modal_add,
-    component: (
-      <ProtectedAuthUser>
-        <AddModal />
-      </ProtectedAuthUser>
-    ),
+    path: MODAL_ROUTE_PATH.create_user,
+    component: <AddModal />,
+  },
+  {
+    path: MODAL_ROUTE_PATH.edit_user,
+    component: <EditModal />,
+  },
+  {
+    path: MODAL_ROUTE_PATH.delete_user,
+    component: <DeleteModal />,
   },
 ];
 
-export default ROUTE_INDEX_COMPONENT;
+export { ROUTE_INDEX_COMPONENT, ROUTE_MODAL_COMPONENT };

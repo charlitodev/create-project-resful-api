@@ -2,14 +2,14 @@ import React from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const AddModal = () => {
+const EditModal = () => {
   const navigate = useNavigate();
 
   return (
     <div className="modalDiv">
       <div className="modal">
         <Modal.Header>
-          <Modal.Title>Add user</Modal.Title>
+          <Modal.Title>Edit user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -43,4 +43,4 @@ const AddModal = () => {
   );
 };
 
-export default AddModal;
+export default EditModal;
