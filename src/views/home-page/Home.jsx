@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import { Container, Button, Table } from "react-bootstrap";
 import { BOOTSTRAP_STYLES } from "../../configs/stylesData";
 import { CRUDContextProvider } from "../../context/CRUDContext";
-import { ModalContextProvider } from "../../context/ModalContext";
 import { Loader } from "../../components";
 import { Link, useLocation } from "react-router-dom";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 
 const Home = () => {
   const { data, isLoading } = useContext(CRUDContextProvider);
-  const { handleShow } = useContext(ModalContextProvider);
+
   const location = useLocation();
 
   return (
@@ -33,18 +32,24 @@ const Home = () => {
           {isLoading ? (
             <Loader loading={isLoading} />
           ) : (
-            data.map((item) => {
+            data?.map &&
+            data.map((item, id) => {
               return (
-                <tr key={item.id}>
+                <tr key={id}>
                   <td>{item.id}</td>
                   <td>
-                    <img
-                      src={item.avatar}
-                      className={BOOTSTRAP_STYLES.avatar_icon}
-                      style={{ width: "60px" }}
-                      alt=""
-                    />
-                    {item.email}
+                    <Link
+                      to={`/profile/${item.id}`}
+                      className="text-decoration-none text-dark"
+                    >
+                      <img
+                        src={item.avatar}
+                        className={BOOTSTRAP_STYLES.avatar_icon}
+                        style={{ width: "60px" }}
+                        alt=""
+                      />
+                      {item.email}
+                    </Link>
                   </td>
                   <td className="py-3">{item.first_name}</td>
                   <td className="py-3">{item.last_name}</td>

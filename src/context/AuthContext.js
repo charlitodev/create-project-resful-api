@@ -10,14 +10,16 @@ export const FuncAuth = ({ children }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isErrorHappen, setIsErrorHappen] = useState(false);
 
   let navigate = useNavigate();
 
   const loginUser = (e) => {
     e.preventDefault();
 
-    if (USERS_DATA.name !== username && USERS_DATA.password !== password) {
+    if (USERS_DATA.name != username || USERS_DATA.password != password) {
       setError(ERROR_MESSAGES.login_error);
+      setIsErrorHappen(true);
     } else {
       setUserActive([
         {
@@ -26,6 +28,8 @@ export const FuncAuth = ({ children }) => {
         },
       ]);
 
+      setUsername("");
+      setPassword("");
       navigate("/home");
     }
   };
@@ -47,6 +51,8 @@ export const FuncAuth = ({ children }) => {
         error,
         userActive,
         logoutUser,
+        isErrorHappen,
+        setIsErrorHappen,
       }}
     >
       {children}

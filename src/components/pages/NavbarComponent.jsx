@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { USERS_DATA } from "../../configs/usersData";
 import { ROUTE_PATH } from "../../constants/routes";
 import { BOOTSTRAP_STYLES } from "../../configs/stylesData";
+import { CgProfile } from "react-icons/cg";
+import { BiLogOut } from "react-icons/bi";
 
 const NavbarComponent = () => {
   const { logoutUser } = useContext(AuthContextProvider);
@@ -27,10 +29,15 @@ const NavbarComponent = () => {
           </Nav>
           <NavDropdown title="User" id="nav-dropdown">
             <NavDropdown.Item>
-              <Link to={`/profile/${USERS_DATA.id}`}>Profile</Link>
+              <Link
+                to={`/profile/${USERS_DATA.id}`}
+                className={`${BOOTSTRAP_STYLES.remove_link_deco} d-flex align-items-center`}
+              >
+                <CgProfile /> Profile
+              </Link>
             </NavDropdown.Item>
             <NavDropdown.Item onClick={() => logoutUser()}>
-              Logout
+              <BiLogOut /> Logout
             </NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>

@@ -1,1 +1,1 @@
-export const API_LINK = "https://reqres.in/api/users?page=1";
+export const API_LINK = "https://reqres.in/api/users?per_page=10";

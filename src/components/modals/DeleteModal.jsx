@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { CRUDContextProvider } from "../../context/CRUDContext";
 
 const DeleteModal = () => {
+  const { deleteUser } = useContext(CRUDContextProvider);
+  const { id } = useParams();
   const navigate = useNavigate();
 
   return (
@@ -18,8 +21,8 @@ const DeleteModal = () => {
           <Button variant="secondary" onClick={() => navigate(-1)}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => navigate(-1)}>
-            Save Changes
+          <Button variant="danger" onClick={() => deleteUser(id)}>
+            Delete
           </Button>
         </Modal.Footer>
       </div>
