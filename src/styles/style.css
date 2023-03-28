@@ -30,6 +30,10 @@
   animation: horizontal-shaking 0.35s;
 }
 
+.eye__hover:hover {
+  cursor: pointer;
+}
+
 @keyframes horizontal-shaking {
   0% {
     transform: translateX(0);
@@ -46,4 +50,94 @@
   100% {
     transform: translateX(0);
   }
+}
+
+/* Paginate */
+.paginate {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+  list-style-type: none;
+  border-radius: 5px;
+}
+
+.previous__button,
+.next__button {
+  background-color: #0e62e1;
+  list-style-type: none;
+  padding: 1em 1em;
+  border-radius: 5px;
+}
+
+.link__text,
+.link__text {
+  text-decoration: none !important;
+  color: #fff;
+}
+
+.link__text:hover {
+  color: #fff;
+}
+
+/************* PAGINATE ***************/
+
+.item {
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+.disabled-page {
+  color: #ffffff;
+}
+
+.active {
+  border-radius: 40px;
+  color: #b31919;
+}
+
+.next {
+  border-left: solid 1px #ffffff;
+  font-size: 4px;
+  height: 60px;
+  position: absolute;
+  right: 0;
+  width: 150px;
+}
+
+.pagination {
+  width: 100%;
+  align-items: center;
+  background-color: #252525;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: center;
+  list-style-type: none;
+  position: relative;
+}
+
+.pagination-page {
+  font-weight: 700;
+}
+
+.previous {
+  border-right: solid 1px #ffffff;
+  font-size: 4px;
+  height: 60px;
+  left: 0;
+  position: absolute;
+  width: 150px;
+}
+
+.previousLinkClassName,
+.nextLinkClassName {
+  color: #fff;
+  font-size: 4em;
 }

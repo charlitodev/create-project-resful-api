@@ -56,11 +56,13 @@ const LoginForm = () => {
           <div style={{ position: "absolute", bottom: ".5em", right: ".5em" }}>
             {isPasswordVisible ? (
               <AiFillEye
+                className="eye__hover"
                 size={25}
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />
             ) : (
               <AiFillEyeInvisible
+                className="eye__hover"
                 size={25}
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />

@@ -6,6 +6,8 @@ const ProtectedAuthUser = ({ children }) => {
   const { userActive } = useContext(AuthContextProvider);
 
   if (Object.keys(userActive).length === 0) {
+    alert("You have to Login First!!");
+
     return <Navigate to="/" />;
   }
 

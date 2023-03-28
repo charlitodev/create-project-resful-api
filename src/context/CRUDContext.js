@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { getUsers } from "../utils/getUsers";
 import { useNavigate } from "react-router-dom";
 import { USER_DEFAULT_IMG } from "../configs/imagesData";
+import { USERS_DATA } from "../configs/usersData";
 import axios from "axios";
 
 export const CRUDContextProvider = createContext();
@@ -21,7 +22,9 @@ export const FuncCRUD = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await getUsers();
+
       setData(result.data);
+      setData((prevState) => [...prevState, USERS_DATA]);
     };
 
     fetchData();
