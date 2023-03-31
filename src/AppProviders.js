@@ -4,9 +4,9 @@ import { FuncCRUD } from "./context/CRUDContext";
 
 const AppProviders = ({ children }) => {
   return (
-    <FuncCRUD>
-      <FuncAuth>{children}</FuncAuth>
-    </FuncCRUD>
+    <FuncAuth>
+      <FuncCRUD>{children}</FuncCRUD>
+    </FuncAuth>
   );
 };
 

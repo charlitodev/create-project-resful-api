@@ -1,55 +1,48 @@
 import React, { useContext } from "react";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
-import { Loader } from "../../components";
 import { BOOTSTRAP_STYLES } from "../../configs/stylesData";
-import { CRUDContextProvider } from "../../context/CRUDContext";
 import { Link, useLocation } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
+import useGetPost from "../../utils/useGetPosts";
+
+import { CRUDContextProvider } from "../../context/CRUDContext";
+import { AuthContextProvider } from "../../context/AuthContext";
 
 const HomePaginate = ({ currentItems }) => {
-  const { data, isLoading } = useContext(CRUDContextProvider);
   const location = useLocation();
+  const { meta, data } = useGetPost();
+  const { deletePost } = useContext(CRUDContextProvider);
+  const { activeId } = useContext(AuthContextProvider);
 
   return (
     <Table striped bordered hover size="sm">
-      {/* <HomePaginate /> */}
       <thead>
         <tr>
-          <th>#</th>
-          <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>Title</th>
+          <th>Message</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        {isLoading ? (
-          <Loader loading={isLoading} />
+        {data?.length === 0 ? (
+          <p>No data :((</p>
         ) : (
-          currentItems?.map &&
-          currentItems.map((item, id) => {
+          data?.map &&
+          data.map((item, id) => {
             return (
               <tr key={id}>
-                <td>{item.id}</td>
                 <td>
                   <Link
                     to={`/profile/${item.id}`}
                     className="text-decoration-none text-dark"
                   >
-                    <img
-                      src={item.avatar}
-                      className={BOOTSTRAP_STYLES.avatar_icon}
-                      style={{ width: "60px" }}
-                      alt=""
-                    />
-                    {item.email}
+                    {item.title}
                   </Link>
                 </td>
-                <td className="py-3">{item.first_name}</td>
-                <td className="py-3">{item.last_name}</td>
+                <td className="py-3">{item.message}</td>
                 <td className={BOOTSTRAP_STYLES.adjust_cta_buttons}>
                   <Link
-                    to={`/edit/user/${item.id}`}
+                    to={`/edit/post/${item.postId}`}
                     state={{ background: location }}
                     className="d-flex align-items-center mx-3 text-decoration-none"
                   >
@@ -59,7 +52,7 @@ const HomePaginate = ({ currentItems }) => {
                   </Link>
 
                   <Link
-                    to={`/delete/user/${item.id}`}
+                    to={`/delete/post/${item.postId}`}
                     state={{ background: location }}
                     className="text-decoration-none"
                   >

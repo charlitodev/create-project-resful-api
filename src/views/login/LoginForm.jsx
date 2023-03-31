@@ -1,23 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { BOOTSTRAP_STYLES, RAW_CSS_STYLES } from "../../configs/stylesData";
 import { Button, Form, Alert } from "react-bootstrap";
 import { AuthContextProvider } from "../../context/AuthContext";
 import { LOGIN_FORM } from "../../constants/forms";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { authLogin } from "../../api/auth";
 
 const LoginForm = () => {
   const {
     loginUser,
-    setUsername,
+    setEmail,
     setPassword,
-    username,
+    email,
     password,
     error,
     isErrorHappen,
     setIsErrorHappen,
+    isPasswordVisible,
+    setIsPasswordVisible,
   } = useContext(AuthContextProvider);
-
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
     <div
@@ -35,12 +36,12 @@ const LoginForm = () => {
           </Alert>
         )}
         <Form.Group className="mb-3">
-          <Form.Label>User name</Form.Label>
+          <Form.Label>User email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
+            placeholder="Enter email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
           <Form.Text className="text-muted">{LOGIN_FORM.sub_title}</Form.Text>
         </Form.Group>

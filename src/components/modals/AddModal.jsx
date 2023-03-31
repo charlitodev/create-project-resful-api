@@ -4,15 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { CRUDContextProvider } from "../../context/CRUDContext";
 
 const AddModal = () => {
-  const {
-    firstName,
-    lastName,
-    userEmail,
-    setFirstName,
-    setLastName,
-    setUserEmail,
-    createUser,
-  } = useContext(CRUDContextProvider);
+  const { title, message, setTitle, setMessage, createPost } =
+    useContext(CRUDContextProvider);
 
   const navigate = useNavigate();
 
@@ -20,36 +13,25 @@ const AddModal = () => {
     <div className="modalDiv">
       <div className="modal">
         <Modal.Header>
-          <Modal.Title>Add user</Modal.Title>
+          <Modal.Title>Create post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>First name</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter first name"
-                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Enter title"
+                onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>Last name</Form.Label>
+              <Form.Label>Message</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter last name"
-                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Enter message"
+                onChange={(e) => setMessage(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter email"
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -57,10 +39,7 @@ const AddModal = () => {
           <Button variant="secondary" onClick={() => navigate(-1)}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => createUser(firstName, lastName, userEmail)}
-          >
+          <Button variant="primary" onClick={() => createPost(title, message)}>
             Create
           </Button>
         </Modal.Footer>

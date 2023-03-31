@@ -1,56 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { CRUDContextProvider } from "../../context/CRUDContext";
+import useGetPost from "../../utils/useGetPosts";
 
 const EditModal = () => {
-  const { setFirstName, setLastName, setUserEmail, editUser, data } =
-    useContext(CRUDContextProvider);
-
+  const { handleUpdatePost } = useContext(CRUDContextProvider);
   const { id } = useParams();
-  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
 
-  const user =
-    data?.find && data.find((item) => String(item.id) === String(id));
-  const { first_name, last_name, email } = user ?? {};
+  const navigate = useNavigate();
 
   return (
     <div className="modalDiv">
       <div className="modal">
         <Modal.Header>
-          <Modal.Title>Edit user</Modal.Title>
+          <Modal.Title>Edit post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>First name</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter first name"
-                defaultValue={first_name}
-                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Enter title"
+                defaultValue={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>Last name</Form.Label>
+              <Form.Label>Message</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter last name"
-                defaultValue={last_name}
-                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Enter message"
+                defaultValue={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter email"
-                defaultValue={email}
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -58,7 +44,10 @@ const EditModal = () => {
           <Button variant="secondary" onClick={() => navigate(-1)}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => editUser(id)}>
+          <Button
+            variant="primary"
+            onClick={() => handleUpdatePost(id, { title, message })}
+          >
             Edit
           </Button>
         </Modal.Footer>

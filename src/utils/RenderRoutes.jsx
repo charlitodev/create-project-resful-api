@@ -15,9 +15,9 @@ const RenderRoutes = ({ route }) => {
         {route.map((item, id) => {
           return (
             <Route key={id} path={item.path} element={item.component}>
-              <Route path="create/user" element={<AddModal />} />
-              <Route path="edit/user/:id" element={<EditModal />} />
-              <Route path="delete/user/:id" element={<DeleteModal />} />
+              <Route path="create/post" element={<AddModal />} />
+              <Route path="edit/post/:id" element={<EditModal />} />
+              <Route path="delete/post/:id" element={<DeleteModal />} />
             </Route>
           );
         })}

@@ -1,0 +1,3 @@
+export const AUTH_COOKIE_NAME = "react-testing-cookie";
+export const AUTH_TOKEN_NAME =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDhlNGNhLTEyMjYtNGUzYy05ODgzLTc0YTEwM2I0MzhlMyIsImlhdCI6MTY3NTM4OTQwOSwiZXhwIjoxNjc1MzkzMDA5fQ.QBs_lsfSTQAyj_9Tenl_prNlNf7wRSc_D-LvLOANf20";

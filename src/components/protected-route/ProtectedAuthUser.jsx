@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import { AuthContextProvider } from "../../context/AuthContext";
+import React from "react";
 import { Navigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import { AUTH_COOKIE_NAME } from "../../constants/cookies";
 
 const ProtectedAuthUser = ({ children }) => {
-  const { userActive } = useContext(AuthContextProvider);
+  const cookies = new Cookies();
+  const token = cookies.get(AUTH_COOKIE_NAME);
 
-  if (Object.keys(userActive).length === 0) {
-    alert("You have to Login First!!");
-
+  if (!token) {
     return <Navigate to="/" />;
   }
 

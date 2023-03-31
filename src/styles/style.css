@@ -4,9 +4,11 @@
   background-color: none;
 }
 
+/* Modal */
+
 .modalDiv {
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   position: absolute;
   top: 0;
   background-color: rgba(0, 0, 0, 0.4);
@@ -50,35 +52,6 @@
   100% {
     transform: translateX(0);
   }
-}
-
-/* Paginate */
-.paginate {
-  display: flex;
-  justify-content: space-between;
-}
-
-.list {
-  list-style-type: none;
-  border-radius: 5px;
-}
-
-.previous__button,
-.next__button {
-  background-color: #0e62e1;
-  list-style-type: none;
-  padding: 1em 1em;
-  border-radius: 5px;
-}
-
-.link__text,
-.link__text {
-  text-decoration: none !important;
-  color: #fff;
-}
-
-.link__text:hover {
-  color: #fff;
 }
 
 /************* PAGINATE ***************/

@@ -5,7 +5,7 @@ export const ROUTE_PATH = {
 };
 
 export const MODAL_ROUTE_PATH = {
-  create_user: "/create/user",
-  edit_user: "/edit/user/:id",
-  delete_user: "/delete/user/:id",
+  create_user: "/create/post",
+  edit_user: "/edit/post/:id",
+  delete_user: "/delete/post/:id",
 };

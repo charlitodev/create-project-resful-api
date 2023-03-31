@@ -1,58 +1,55 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { USERS_DATA } from "../configs/usersData";
-import { ERROR_MESSAGES } from "../constants/errors";
+import Cookies from "universal-cookie";
+import { AUTH_COOKIE_NAME } from "../constants/cookies";
+import { authLogin } from "../api/auth";
 
 export const AuthContextProvider = createContext();
 
 export const FuncAuth = ({ children }) => {
-  const [userActive, setUserActive] = useState({});
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isErrorHappen, setIsErrorHappen] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [activeId, setActiveId] = useState("");
+
+  const cookies = new Cookies();
 
   let navigate = useNavigate();
 
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
 
-    if (USERS_DATA.name != username || USERS_DATA.password != password) {
-      setError(ERROR_MESSAGES.login_error);
-      setIsErrorHappen(true);
-    } else {
-      setUserActive([
-        {
-          username: username,
-          password: password,
-        },
-      ]);
+    const { data } = await authLogin({ email, password });
+    const { token, userId } = data;
+    console.log(data);
 
-      setUsername("");
-      setPassword("");
-      navigate("/home");
-    }
+    setActiveId(userId);
+    cookies.set(AUTH_COOKIE_NAME, token);
+    navigate("/home");
   };
 
   const logoutUser = () => {
-    setUserActive({});
-    setUsername("");
-    setPassword("");
+    cookies.remove(AUTH_COOKIE_NAME);
+    window.location.reload(true);
   };
 
   return (
     <AuthContextProvider.Provider
       value={{
+        activeId,
         loginUser,
-        setUsername,
+        setEmail,
         setPassword,
-        username,
+        email,
         password,
         error,
-        userActive,
         logoutUser,
         isErrorHappen,
         setIsErrorHappen,
+        isPasswordVisible,
+        setIsPasswordVisible,
       }}
     >
       {children}

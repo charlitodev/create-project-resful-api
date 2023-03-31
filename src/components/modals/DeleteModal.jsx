@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { CRUDContextProvider } from "../../context/CRUDContext";
 
 const DeleteModal = () => {
-  const { deleteUser } = useContext(CRUDContextProvider);
+  const { handleDeletePost, data } = useContext(CRUDContextProvider);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -15,13 +15,13 @@ const DeleteModal = () => {
           <Modal.Title>Delete user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h3>Are you sure you want to delete this user?</h3>
+          <h6>Are you sure you want to delete this post?</h6>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => navigate(-1)}>
             Close
           </Button>
-          <Button variant="danger" onClick={() => deleteUser(id)}>
+          <Button variant="danger" onClick={() => handleDeletePost(id)}>
             Delete
           </Button>
         </Modal.Footer>
