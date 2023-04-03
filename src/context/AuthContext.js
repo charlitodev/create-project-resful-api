@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AUTH_COOKIE_NAME } from "../constants/cookies";
-import { authLogin } from "../api/auth";
+import { authLogin, createUser } from "../api/auth";
 import cookies from "../utils/cookies";
 
 export const AuthContextProvider = createContext();
@@ -13,6 +13,8 @@ export const FuncAuth = ({ children }) => {
   const [isErrorHappen, setIsErrorHappen] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [activeId, setActiveId] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   let navigate = useNavigate();
 
@@ -26,6 +28,13 @@ export const FuncAuth = ({ children }) => {
     navigate("/post");
   };
 
+  const registerUser = async (e) => {
+    e.preventDefault();
+
+    await createUser({ firstName, lastName, email, password });
+    navigate("/");
+  };
+
   const logoutUser = () => {
     cookies.remove(AUTH_COOKIE_NAME);
     window.location.reload(true);
@@ -34,6 +43,9 @@ export const FuncAuth = ({ children }) => {
   return (
     <AuthContextProvider.Provider
       value={{
+        setFirstName,
+        setLastName,
+        registerUser,
         activeId,
         loginUser,
         setEmail,

@@ -6,9 +6,10 @@ import { LOGIN_FORM } from "../../constants/forms";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-const LoginForm = () => {
+const Register = () => {
   const {
-    loginUser,
+    setFirstName,
+    setLastName,
     setEmail,
     setPassword,
     email,
@@ -18,6 +19,7 @@ const LoginForm = () => {
     setIsErrorHappen,
     isPasswordVisible,
     setIsPasswordVisible,
+    registerUser,
   } = useContext(AuthContextProvider);
 
   return (
@@ -25,7 +27,7 @@ const LoginForm = () => {
       className={BOOTSTRAP_STYLES.center_div}
       style={{ height: RAW_CSS_STYLES.height }}
     >
-      <Form onSubmit={loginUser}>
+      <Form onSubmit={registerUser}>
         {error && (
           <Alert
             variant={"danger"}
@@ -36,14 +38,23 @@ const LoginForm = () => {
           </Alert>
         )}
         <Form.Group className="mb-3">
-          <h3>Login</h3>
-          <hr></hr>
-          <Form.Label>User email</Form.Label>
+          <h3>Register</h3>
+          <hr></hr>{" "}
+          <Form.Control
+            type="text"
+            placeholder="Enter first name"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <Form.Control
+            type="text"
+            placeholder="Enter last name"
+            onChange={(e) => setLastName(e.target.value)}
+            className="my-3"
+          />
           <Form.Control
             type="text"
             placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
-            value={email}
           />
           <Form.Text className="text-muted">{LOGIN_FORM.sub_title}</Form.Text>
         </Form.Group>
@@ -73,11 +84,11 @@ const LoginForm = () => {
           </div>
         </Form.Group>
         <Button className="w-100" variant="primary" type="submit">
-          Login
+          Register
         </Button>
         <div className="w-100 mt-2 text-center text-secondary">
           <small>
-            Don't have account? <Link to="/register">Sign up</Link>
+            Already have account? <Link to="/">Sign in</Link>
           </small>
         </div>
       </Form>
@@ -85,4 +96,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Register;

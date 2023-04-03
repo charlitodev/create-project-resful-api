@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPost, deletePost, editPost } from "../api/post";
+import useGetPosts from "../utils/useGetPosts";
 
 export const CRUDContextProvider = createContext();
 
@@ -29,9 +30,14 @@ export const FuncCRUD = ({ children }) => {
     navigate(-1);
   };
 
+  const handleReloadPage = () => {
+    window.location.reload();
+  };
+
   return (
     <CRUDContextProvider.Provider
       value={{
+        handleReloadPage,
         postData,
         handleUpdatePost,
         handleDeletePost,

@@ -1,4 +1,4 @@
-import { Profile, LoginForm } from "../views";
+import { Profile, LoginForm, Register } from "../views";
 import {
   Page,
   NavbarComponent,
@@ -30,6 +30,10 @@ const ROUTE_INDEX_COMPONENT = [
   {
     path: ROUTE_PATH.login_form,
     component: <LoginForm />,
+  },
+  {
+    path: ROUTE_PATH.register_form,
+    component: <Register />,
   },
 ];
 

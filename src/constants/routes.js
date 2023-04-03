@@ -1,6 +1,7 @@
 export const ROUTE_PATH = {
   profile_view: "/post/:id",
   login_form: "/",
+  register_form: "/register",
   home_view: "/post",
 };
 

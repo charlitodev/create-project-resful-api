@@ -10,6 +10,8 @@ const instance = axios.create({
   mode: "no-cors",
   headers: {
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",
   },
   credentials: "same-origin",
@@ -53,7 +55,6 @@ export default async function http(method, url, data) {
   }
 
   const response = await instance(options);
-
   const { data: dataResponse } = response;
 
   return dataResponse;

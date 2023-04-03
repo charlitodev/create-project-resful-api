@@ -6,6 +6,11 @@
 
 /* Modal */
 
+.refresh__btn:hover {
+  cursor: pointer;
+  color: #0c5ed7;
+}
+
 .modalDiv {
   width: 100vw;
   height: 120vh;
@@ -72,7 +77,7 @@
 
 .active {
   border-radius: 40px;
-  color: #b31919;
+  color: #0c5ed7;
 }
 
 .next {
@@ -87,7 +92,7 @@
 .pagination {
   width: 100%;
   align-items: center;
-  background-color: #252525;
+  background-color: #393939;
   display: flex;
   flex-direction: row;
   height: 60px;
