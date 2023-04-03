@@ -1,23 +1,14 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { HomePaginate } from "../../views";
-import { CRUDContextProvider } from "../../context/CRUDContext";
 import ReactPaginate from "react-paginate";
+import usePaginate from "./usePaginate";
 
-const Paginate = ({ itemsPerPage }) => {
-  const { data } = useContext(CRUDContextProvider);
-
-  const [itemOffset, setItemOffset] = useState(0);
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = data?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(data?.length / itemsPerPage);
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data?.length;
-    setItemOffset(newOffset);
-  };
+const Paginate = () => {
+  const { handleChange, totalPages } = usePaginate();
 
   return (
     <>
-      <HomePaginate currentItems={currentItems} />
+      <HomePaginate />
       <ReactPaginate
         activeClassName={"item active"}
         breakClassName={"item break-me "}
@@ -29,9 +20,9 @@ const Paginate = ({ itemsPerPage }) => {
         pageClassName={"item pagination-page "}
         previousClassName={"item previous"}
         nextLabel="next >"
-        onPageChange={handlePageClick}
+        onPageChange={handleChange}
         pageRangeDisplayed={5}
-        pageCount={pageCount}
+        pageCount={totalPages}
         previousLabel="< previous"
         previousLinkClassName={"previousLinkClassName"}
         nextLinkClassName={"nextLinkClassName"}

@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { AUTH_COOKIE_NAME } from "../constants/cookies";
 import { authLogin } from "../api/auth";
+import cookies from "../utils/cookies";
 
 export const AuthContextProvider = createContext();
 
@@ -14,8 +14,6 @@ export const FuncAuth = ({ children }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [activeId, setActiveId] = useState("");
 
-  const cookies = new Cookies();
-
   let navigate = useNavigate();
 
   const loginUser = async (e) => {
@@ -23,11 +21,9 @@ export const FuncAuth = ({ children }) => {
 
     const { data } = await authLogin({ email, password });
     const { token, userId } = data;
-    console.log(data);
-
     setActiveId(userId);
     cookies.set(AUTH_COOKIE_NAME, token);
-    navigate("/home");
+    navigate("/post");
   };
 
   const logoutUser = () => {

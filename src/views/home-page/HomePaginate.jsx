@@ -1,18 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import { BOOTSTRAP_STYLES } from "../../configs/stylesData";
 import { Link, useLocation } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
 import useGetPost from "../../utils/useGetPosts";
 
-import { CRUDContextProvider } from "../../context/CRUDContext";
-import { AuthContextProvider } from "../../context/AuthContext";
-
-const HomePaginate = ({ currentItems }) => {
+const HomePaginate = () => {
   const location = useLocation();
-  const { meta, data } = useGetPost();
-  const { deletePost } = useContext(CRUDContextProvider);
-  const { activeId } = useContext(AuthContextProvider);
+  const { data } = useGetPost();
 
   return (
     <Table striped bordered hover size="sm">
@@ -25,7 +20,9 @@ const HomePaginate = ({ currentItems }) => {
       </thead>
       <tbody>
         {data?.length === 0 ? (
-          <p>No data :((</p>
+          <tr>
+            <td>No data :((</td>
+          </tr>
         ) : (
           data?.map &&
           data.map((item, id) => {
@@ -33,7 +30,7 @@ const HomePaginate = ({ currentItems }) => {
               <tr key={id}>
                 <td>
                   <Link
-                    to={`/profile/${item.id}`}
+                    to={`/post/${item.postId}`}
                     className="text-decoration-none text-dark"
                   >
                     {item.title}
