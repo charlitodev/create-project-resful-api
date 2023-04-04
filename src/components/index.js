@@ -10,3 +10,6 @@ export { default as EditModal } from "./modals/EditModal";
 
 // Paginate
 export { default as Paginate } from "./pagination/Paginate";
+
+// Toast
+export { default as Toast } from "./toast/Toast";

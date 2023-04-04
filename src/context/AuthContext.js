@@ -1,8 +1,12 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AUTH_COOKIE_NAME } from "../constants/cookies";
+import { ERROR_MESSAGES } from "../constants/errors";
 import { authLogin, createUser } from "../api/auth";
 import cookies from "../utils/cookies";
+import { ROUTE_PATH } from "../constants/routes";
+import { TOAST_DATA, TOAST_MESSAGES } from "../constants/toast";
+import { toast } from "react-toastify";
 
 export const AuthContextProvider = createContext();
 
@@ -12,7 +16,6 @@ export const FuncAuth = ({ children }) => {
   const [error, setError] = useState("");
   const [isErrorHappen, setIsErrorHappen] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [activeId, setActiveId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -21,18 +24,27 @@ export const FuncAuth = ({ children }) => {
   const loginUser = async (e) => {
     e.preventDefault();
 
-    const { data } = await authLogin({ email, password });
-    const { token, userId } = data;
-    setActiveId(userId);
-    cookies.set(AUTH_COOKIE_NAME, token);
-    navigate("/post");
+    try {
+      const { data } = await authLogin({ email, password });
+      const { token } = data;
+
+      cookies.set(AUTH_COOKIE_NAME, token);
+      navigate(ROUTE_PATH.home_view);
+    } catch (error) {
+      setError(ERROR_MESSAGES.invalid_message);
+    }
   };
 
   const registerUser = async (e) => {
     e.preventDefault();
 
-    await createUser({ firstName, lastName, email, password });
-    navigate("/");
+    try {
+      await createUser({ firstName, lastName, email, password });
+      navigate(ROUTE_PATH.login_form);
+      toast.success(TOAST_MESSAGES.account_created, TOAST_DATA);
+    } catch (error) {
+      setError(ERROR_MESSAGES.invalid_message);
+    }
   };
 
   const logoutUser = () => {
@@ -46,7 +58,6 @@ export const FuncAuth = ({ children }) => {
         setFirstName,
         setLastName,
         registerUser,
-        activeId,
         loginUser,
         setEmail,
         setPassword,

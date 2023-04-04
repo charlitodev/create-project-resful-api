@@ -14,7 +14,7 @@ const Home = () => {
       <div className="my-4 text-end">
         <FiRefreshCcw
           className="refresh__btn me-3"
-          size={30}
+          size={20}
           onClick={() => handleReloadPage()}
         />
 

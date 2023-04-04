@@ -1,18 +1,15 @@
 import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPost, deletePost, editPost } from "../api/post";
-import useGetPosts from "../utils/useGetPosts";
 
 export const CRUDContextProvider = createContext();
 
 export const FuncCRUD = ({ children }) => {
-  const [postData, setPostData] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   let navigate = useNavigate();
 
   const createPost = async (title, message) => {
@@ -30,7 +27,7 @@ export const FuncCRUD = ({ children }) => {
     navigate(-1);
   };
 
-  const handleReloadPage = () => {
+  const handleReloadPage = async () => {
     window.location.reload();
   };
 
@@ -38,7 +35,6 @@ export const FuncCRUD = ({ children }) => {
     <CRUDContextProvider.Provider
       value={{
         handleReloadPage,
-        postData,
         handleUpdatePost,
         handleDeletePost,
         createPost,
@@ -46,7 +42,6 @@ export const FuncCRUD = ({ children }) => {
         setTitle,
         setMessage,
         message,
-        isLoading,
         setFirstName,
         setLastName,
         setUserEmail,

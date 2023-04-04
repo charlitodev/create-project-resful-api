@@ -4,8 +4,8 @@ import { AuthContextProvider } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { ROUTE_PATH } from "../../constants/routes";
 import { BOOTSTRAP_STYLES } from "../../configs/stylesData";
-import { BiLogOut } from "react-icons/bi";
-import { BiHomeAlt, BiUser } from "react-icons/bi";
+import { BiHomeAlt, BiUser, BiLogOut } from "react-icons/bi";
+import { FiSettings } from "react-icons/fi";
 
 const NavbarComponent = () => {
   const { logoutUser } = useContext(AuthContextProvider);
@@ -25,6 +25,9 @@ const NavbarComponent = () => {
         <Navbar.Collapse>
           <Nav className="me-auto"></Nav>
           <NavDropdown title={<BiUser size={40} />} id="nav-dropdown">
+            <NavDropdown.Item href="/settings">
+              <FiSettings /> Settings
+            </NavDropdown.Item>
             <NavDropdown.Item onClick={() => logoutUser()}>
               <BiLogOut /> Logout
             </NavDropdown.Item>

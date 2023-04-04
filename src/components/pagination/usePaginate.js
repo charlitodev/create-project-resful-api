@@ -8,8 +8,7 @@ function usePaginate() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function handleChange(event) {
-    const { selected } = event;
+  function handleChange({ selected }) {
     let searchQuery;
 
     if (selected) {

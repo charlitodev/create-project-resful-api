@@ -5,14 +5,17 @@ import { getPosts } from "../api/post";
 function useGetPosts() {
   const [meta, setMeta] = useState({});
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { search } = useLocation();
 
   async function getData() {
     try {
+      setIsLoading(true);
       const { data: dataResponse, meta: metaResponse } = await getPosts(search);
 
       setMeta(metaResponse);
       setData(dataResponse);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +25,7 @@ function useGetPosts() {
     getData();
   }, [search]);
 
-  return { data, meta, getData, setData };
+  return { data, meta, getData, setData, isLoading };
 }
 
 export default useGetPosts;

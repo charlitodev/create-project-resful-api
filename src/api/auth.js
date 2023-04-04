@@ -7,3 +7,7 @@ export function authLogin(data) {
 export function createUser(data) {
   return http("POST", "/user/signup", data);
 }
+
+export function changePassword(data) {
+  return http("PUT", "/user/password", data);
+}

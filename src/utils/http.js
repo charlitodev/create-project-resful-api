@@ -40,21 +40,21 @@ instance.interceptors.response.use(
 );
 
 export function parseSearchToObject(search) {
-  const value = search.substring(1);
+  // const value = search.substring(1);
 
-  return qs.parse(value);
+  return qs.parse(search, { ignoreQueryPrefix: true });
 }
 
 export default async function http(method, url, data) {
-  const options = { method, url };
+  const config = { method, url };
 
-  if (method === "GET" || method === "DELETE") {
-    options.params = { limit: 5, offset: 0, ...data };
+  if (method.toUpperCase() === "GET" || method.toUpperCase() === "DELETE") {
+    config.params = { limit: 5, ...data };
   } else {
-    options.data = data;
+    config.data = data;
   }
 
-  const response = await instance(options);
+  const response = await instance(config);
   const { data: dataResponse } = response;
 
   return dataResponse;

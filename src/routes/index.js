@@ -1,4 +1,4 @@
-import { Profile, LoginForm, Register } from "../views";
+import { Post, LoginForm, Register, Settings } from "../views";
 import {
   Page,
   NavbarComponent,
@@ -11,11 +11,11 @@ import { ProtectedAuthUser } from "../components";
 
 const ROUTE_INDEX_COMPONENT = [
   {
-    path: ROUTE_PATH.profile_view,
+    path: ROUTE_PATH.post_view,
     component: (
       <ProtectedAuthUser>
         <NavbarComponent />
-        <Profile />
+        <Post />
       </ProtectedAuthUser>
     ),
   },
@@ -24,6 +24,15 @@ const ROUTE_INDEX_COMPONENT = [
     component: (
       <ProtectedAuthUser>
         <Page />
+      </ProtectedAuthUser>
+    ),
+  },
+  {
+    path: ROUTE_PATH.settings,
+    component: (
+      <ProtectedAuthUser>
+        <NavbarComponent />
+        <Settings />
       </ProtectedAuthUser>
     ),
   },

@@ -65,7 +65,6 @@ const Register = () => {
             type={isPasswordVisible ? "text" : "password"}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            value={password}
           />
           <div style={{ position: "absolute", bottom: ".5em", right: ".5em" }}>
             {isPasswordVisible ? (

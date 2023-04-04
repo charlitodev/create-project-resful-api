@@ -1,8 +1,9 @@
 export const ROUTE_PATH = {
-  profile_view: "/post/:id",
+  post_view: "/post/:id",
   login_form: "/",
   register_form: "/register",
   home_view: "/post",
+  settings: "/settings",
 };
 
 export const MODAL_ROUTE_PATH = {
