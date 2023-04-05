@@ -6,9 +6,10 @@ import { Button, Table } from "react-bootstrap";
 import useGetPost from "../../utils/useGetPosts";
 import { Loader } from "../../components";
 
-const HomePaginate = () => {
+// Home table
+const HomePaginate = ({ data, onClickEditShow, onClickDeleteShow }) => {
   const location = useLocation();
-  const { data, isLoading } = useGetPost();
+  const { isLoading } = useGetPost();
 
   return (
     <>
@@ -50,7 +51,10 @@ const HomePaginate = () => {
                         state={{ background: location }}
                         className="d-flex align-items-center me-3 text-decoration-none"
                       >
-                        <Button variant="warning">
+                        <Button
+                          variant="warning"
+                          onClick={() => onClickEditShow(item.postId)}
+                        >
                           <FaPencilAlt /> Edit
                         </Button>
                       </Link>
@@ -63,6 +67,7 @@ const HomePaginate = () => {
                         <Button
                           variant="danger"
                           className="d-flex align-items-center"
+                          onClick={() => onClickDeleteShow(item.postId)}
                         >
                           <FaTrash /> Delete
                         </Button>

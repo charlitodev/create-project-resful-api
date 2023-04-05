@@ -40,16 +40,24 @@ instance.interceptors.response.use(
 );
 
 export function parseSearchToObject(search) {
-  // const value = search.substring(1);
+  // if (search.length === 0) {
+  //   return { post: "/" };
+  // } else {
+  //   const value = search.substring(1);
 
-  return qs.parse(search, { ignoreQueryPrefix: true });
+  //   return qs.parse(value);
+  // }
+
+  const value = search.substring(1);
+
+  return qs.parse(value);
 }
 
 export default async function http(method, url, data) {
   const config = { method, url };
 
   if (method.toUpperCase() === "GET" || method.toUpperCase() === "DELETE") {
-    config.params = { limit: 5, ...data };
+    config.params = { ...data };
   } else {
     config.data = data;
   }

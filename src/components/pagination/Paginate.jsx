@@ -3,13 +3,18 @@ import { HomePaginate } from "../../views";
 import ReactPaginate from "react-paginate";
 import usePaginate from "./usePaginate";
 
-const Paginate = () => {
+const Paginate = ({ data, meta, onClickEditShow, onClickDeleteShow }) => {
   const { handleChange, totalPages } = usePaginate();
 
   return (
     <>
-      <HomePaginate />
+      <HomePaginate
+        data={data}
+        onClickEditShow={onClickEditShow}
+        onClickDeleteShow={onClickDeleteShow}
+      />
       <ReactPaginate
+        meta={meta}
         activeClassName={"item active"}
         breakClassName={"item break-me "}
         breakLabel={"..."}

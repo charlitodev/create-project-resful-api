@@ -18,6 +18,7 @@ function useGetPosts() {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   }
 
@@ -25,7 +26,7 @@ function useGetPosts() {
     getData();
   }, [search]);
 
-  return { data, meta, getData, setData, isLoading };
+  return { isLoading, data, meta, reload: getData };
 }
 
 export default useGetPosts;

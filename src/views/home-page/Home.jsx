@@ -1,29 +1,87 @@
-import React, { useContext } from "react";
-import { Container, Button } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Container } from "react-bootstrap";
 import { Paginate } from "../../components";
-import { FiRefreshCcw } from "react-icons/fi";
-import { CRUDContextProvider } from "../../context/CRUDContext";
+import useAddPost from "../posts/useAddPost";
+import useEditPost from "../posts/useEditPost";
+import AddModal from "../posts/AddModal";
+import EditModal from "../posts/EditModal";
+import DeleteModal from "../posts/DeleteModal";
+import useGetPosts from "../../utils/useGetPosts";
+import useDeletePost from "../posts/useDeletePost";
+
+import ActionButtons from "./ActionButtons";
 
 const Home = () => {
-  const location = useLocation();
-  const { handleReloadPage } = useContext(CRUDContextProvider);
+  const { reload, data } = useGetPosts();
+  const {
+    title,
+    message,
+    setTitle,
+    setMessage,
+    createPost,
+    handleShow,
+    handleClose,
+    show,
+  } = useAddPost(reload);
+
+  const {
+    handleCloseEdit,
+    handleUpdatePost,
+    editHandleShow,
+    editShow,
+    titleEdit,
+    messageEdit,
+    setTitleEdit,
+    setMessageEdit,
+    idToEdit,
+    postData,
+  } = useEditPost(reload);
+
+  const {
+    idToDelete,
+    handleCloseDelete,
+    handleDeletePost,
+    deleteHandleShow,
+    deleteShow,
+  } = useDeletePost(reload);
 
   return (
     <Container>
-      <div className="my-4 text-end">
-        <FiRefreshCcw
-          className="refresh__btn me-3"
-          size={20}
-          onClick={() => handleReloadPage()}
-        />
+      <ActionButtons handleShow={handleShow} />
 
-        <Link to="/create/post" state={{ background: location }}>
-          <Button>Add</Button>
-        </Link>
-      </div>
+      <Paginate
+        data={data}
+        onClickEditShow={editHandleShow}
+        onClickDeleteShow={deleteHandleShow}
+      />
 
-      <Paginate itemsPerPage={5} />
+      {/* Modals */}
+      <AddModal
+        show={show}
+        handleClose={handleClose}
+        setTitle={setTitle}
+        setMessage={setMessage}
+        title={title}
+        message={message}
+        createPost={createPost}
+      />
+      <EditModal
+        show={editShow}
+        handleClose={handleCloseEdit}
+        setTitle={setTitleEdit}
+        setMessage={setMessageEdit}
+        title={titleEdit}
+        message={messageEdit}
+        handleUpdatePost={handleUpdatePost}
+        idToEdit={idToEdit}
+        postData={postData}
+      />
+      <DeleteModal
+        show={deleteShow}
+        handleClose={handleCloseDelete}
+        handleDeletePost={handleDeletePost}
+        idToDelete={idToDelete}
+      />
     </Container>
   );
 };
