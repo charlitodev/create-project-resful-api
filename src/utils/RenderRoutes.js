@@ -1,6 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AddModal, EditModal, DeleteModal } from "../components";
-import { LoginForm } from "../views";
+import { LoginForm, AddModal, EditModal, DeleteModal } from "../views";
 import { ROUTE_MODAL_COMPONENT } from "../routes/index";
 
 const RenderRoutes = ({ route }) => {
