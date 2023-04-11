@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.modalDiv {
+/* .modalDiv {
   width: 100vw;
   height: 120vh;
   position: absolute;
@@ -32,7 +32,7 @@
   background-color: white;
   border-radius: 5px;
   display: block;
-}
+} */
 
 .alert__danger {
   animation: horizontal-shaking 0.35s;

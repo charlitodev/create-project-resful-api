@@ -18,7 +18,6 @@ function useChangePassword() {
 
     try {
       await changePassword({ oldPassword, newPassword, confirmPassword });
-
       navigate(ROUTE_PATH.login_form);
       toast.success(TOAST_MESSAGES.password_changed, TOAST_DATA);
     } catch (error) {

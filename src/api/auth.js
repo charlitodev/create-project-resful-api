@@ -11,3 +11,7 @@ export function createUser(data) {
 export function changePassword(data) {
   return http("PUT", "/user/password", data);
 }
+
+export function getUser(data) {
+  return http("PUT", "/user/", data);
+}

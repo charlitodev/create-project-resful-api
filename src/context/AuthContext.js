@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AUTH_COOKIE_NAME } from "../constants/cookies";
 import { ERROR_MESSAGES } from "../constants/errors";
 import { authLogin, createUser } from "../api/auth";
+import ls from "local-storage";
 import cookies from "../utils/cookies";
 import { ROUTE_PATH } from "../constants/routes";
 import { TOAST_DATA, TOAST_MESSAGES } from "../constants/toast";
@@ -26,8 +27,7 @@ export const FuncAuth = ({ children }) => {
 
     try {
       const { data } = await authLogin({ email, password });
-      const { token } = data;
-
+      const { token, firstName, lastName } = data;
       cookies.set(AUTH_COOKIE_NAME, token);
       navigate(ROUTE_PATH.home_view);
     } catch (error) {
@@ -49,7 +49,7 @@ export const FuncAuth = ({ children }) => {
 
   const logoutUser = () => {
     cookies.remove(AUTH_COOKIE_NAME);
-    window.location.reload(true);
+    window.location.reload("/");
   };
 
   return (

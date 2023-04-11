@@ -6,6 +6,7 @@ import { ROUTE_PATH } from "../../constants/routes";
 import { BOOTSTRAP_STYLES } from "../../configs/stylesData";
 import { BiHomeAlt, BiUser, BiLogOut } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
 
 const NavbarComponent = () => {
   const { logoutUser } = useContext(AuthContextProvider);

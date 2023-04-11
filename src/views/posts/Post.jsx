@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import useGetIndividualPost from "../../utils/useGetIndividualPost";
+import useGetIndividualPost from "./useGetIndividualPost";
 import { Loader } from "../../components";
 
 const Post = () => {

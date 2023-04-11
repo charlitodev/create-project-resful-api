@@ -9,15 +9,17 @@ function useGetPosts() {
   const { search } = useLocation();
 
   async function getData() {
+    setIsLoading(true);
+
     try {
-      setIsLoading(true);
       const { data: dataResponse, meta: metaResponse } = await getPosts(search);
 
       setMeta(metaResponse);
       setData(dataResponse);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -25,7 +27,7 @@ function useGetPosts() {
     getData();
   }, [search]);
 
-  return { data, meta, getData, setData, isLoading };
+  return { data, meta, isLoading, onReload: getData, getData };
 }
 
 export default useGetPosts;

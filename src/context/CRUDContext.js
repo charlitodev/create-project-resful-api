@@ -13,7 +13,9 @@ export const FuncCRUD = ({ children }) => {
   let navigate = useNavigate();
 
   const createPost = async (title, message) => {
-    await addPost({ title, message });
+    const data = { title, message };
+
+    await addPost(data);
     navigate(-1);
   };
 

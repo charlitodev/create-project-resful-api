@@ -32,7 +32,7 @@ const HomePaginate = () => {
               data.map((item, id) => {
                 return (
                   <tr key={id}>
-                    <td>
+                    <td className="py-3">
                       <Link
                         to={`/post/${item.postId}`}
                         className="text-decoration-none text-dark"

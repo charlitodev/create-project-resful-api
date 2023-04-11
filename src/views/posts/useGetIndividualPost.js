@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { getPost } from "../api/post";
+import { getPost } from "../../api/post";
 
 function useGetIndividualPost(callback) {
   const [postData, setPostData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   async function getPostData() {
+    setIsLoading(true);
+
     try {
-      setIsLoading(true);
       const data = await getPost(callback);
 
       setPostData(data);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 

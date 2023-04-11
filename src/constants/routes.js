@@ -4,10 +4,11 @@ export const ROUTE_PATH = {
   register_form: "/register",
   home_view: "/post",
   settings: "/settings",
+  profile_view: "/user/",
 };
 
 export const MODAL_ROUTE_PATH = {
-  create_user: "/create/post",
+  create_user: "/post/create",
   edit_user: "/edit/post/:id",
   delete_user: "/delete/post/:id",
 };

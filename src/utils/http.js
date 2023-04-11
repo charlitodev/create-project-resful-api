@@ -32,7 +32,7 @@ instance.interceptors.response.use(
 
     if (message === "jwt expired") {
       cookies.remove(AUTH_COOKIE_NAME);
-      window.location.reload("/");
+      window.location.reload(true);
     }
 
     return Promise.reject(error);
@@ -40,8 +40,6 @@ instance.interceptors.response.use(
 );
 
 export function parseSearchToObject(search) {
-  // const value = search.substring(1);
-
   return qs.parse(search, { ignoreQueryPrefix: true });
 }
 

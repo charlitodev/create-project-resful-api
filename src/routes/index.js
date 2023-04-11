@@ -1,11 +1,13 @@
-import { Post, LoginForm, Register, Settings } from "../views";
 import {
-  Page,
-  NavbarComponent,
+  Post,
+  LoginForm,
+  Register,
+  Settings,
   AddModal,
   EditModal,
   DeleteModal,
-} from "../components";
+} from "../views";
+import { Page, NavbarComponent } from "../components";
 import { ROUTE_PATH, MODAL_ROUTE_PATH } from "../constants/routes";
 import { ProtectedAuthUser } from "../components";
 
