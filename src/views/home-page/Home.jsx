@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { Paginate } from "../../components";
+
 import useAddPost from "../posts/useAddPost";
 import useEditPost from "../posts/useEditPost";
 import AddModal from "../posts/AddModal";
@@ -8,6 +8,7 @@ import EditModal from "../posts/EditModal";
 import DeleteModal from "../posts/DeleteModal";
 import useGetPosts from "../../utils/useGetPosts";
 import useDeletePost from "../posts/useDeletePost";
+import { Paginate } from "../../components";
 
 import ActionButtons from "./ActionButtons";
 

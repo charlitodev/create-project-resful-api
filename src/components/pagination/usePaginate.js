@@ -1,24 +1,14 @@
 import useGetPosts from "../../utils/useGetPosts";
-import { useLocation, useNavigate } from "react-router-dom";
-import qs from "qs";
+import { useSearchParams } from "react-router-dom";
 
 function usePaginate() {
   const { meta } = useGetPosts();
   const { totalPages } = meta;
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [searchParams, setSeachParams] = useSearchParams();
 
   function handleChange({ selected }) {
-    let searchQuery;
-
-    if (selected) {
-      searchQuery = qs.stringify({ offset: selected });
-    }
-
-    navigate({
-      pathname: location.pathname,
-      search: searchQuery || "", // offset
-    });
+    searchParams.set("offset", selected);
+    setSeachParams(searchParams);
   }
 
   return { handleChange, totalPages };

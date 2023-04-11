@@ -57,7 +57,7 @@ export default async function http(method, url, data) {
   const config = { method, url };
 
   if (method.toUpperCase() === "GET" || method.toUpperCase() === "DELETE") {
-    config.params = { ...data };
+    config.params = { limit: 5, ...data };
   } else {
     config.data = data;
   }

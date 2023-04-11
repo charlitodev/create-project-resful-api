@@ -1,7 +1,7 @@
 export const BOOTSTRAP_STYLES = {
   center_div: "d-flex justify-content-center align-items-center",
   remove_link_deco: "text-decoration-none text-dark",
-  avatar_icon: "rounded-circle me-3",
+  avatar_icon: "rounded-circle me-2",
   adjust_cta_buttons: "d-flex align-items-center py-3",
 };
 
